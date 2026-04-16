@@ -13,7 +13,7 @@ int main() {
     engine.loadFromFile(getUniversalPath("logs.txt"));
     while(true) {
         std::string command;
-        std::cout << "1) CHANGE - change file\n2) WRITE - write queries\nCommand: ";
+        std::cout << "1) CHANGE - change file\n2) WRITE - write queries\n3) EXIT - exit program\nCommand: ";
         getline(std::cin, command);
         if("CHANGE" == command || "1" == command) {
             engine.clearLogs();
@@ -35,6 +35,8 @@ int main() {
                     std::cout << entry << std::endl;
                 }
             }
+        } else if ("EXIT" == command || "3" == command) {
+            return 0;
         }
 
     }

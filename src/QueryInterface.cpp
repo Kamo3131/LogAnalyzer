@@ -11,7 +11,7 @@ QueryOptions QueryInterface::parseQuery(std::string line) {
     return opt;
 }
 std::optional<std::pair<std::chrono::system_clock::time_point, std::chrono::system_clock::time_point>> QueryInterface::createTimestamp(std::string line) {
-    std::regex timeRangeRegex(R"(TIMESTAMP\s+from\s+\"([^\"]+)\"\s+to\s+\"([^\"]+)\")");
+    std::regex timeRangeRegex(R"(TIMESTAMP\s+(?:from|od)\s+\"([^\"]+)\"\s+(?:to|do)\s+\"([^\"]+)\")");
     std::smatch match;
     
     if(std::regex_search(line, match, timeRangeRegex)) {

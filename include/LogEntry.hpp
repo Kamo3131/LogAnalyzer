@@ -13,7 +13,7 @@ struct LogEntry {
 
     inline std::ostream& operator<<(std::ostream& os, const LogEntry& entry) {
         std::time_t tt = std::chrono::system_clock::to_time_t(entry.timestamp);
-        std::tm tm = *std::localtime(&tt);
+        std::tm tm = *std::gmtime(&tt);
         os << "[" << std::put_time(&tm, "%Y-%m-%dT%H:%M:%S") << "] [" << entry.level << "] [" << entry.source << "] " << entry.message;
         return os; 
     }
