@@ -12,6 +12,7 @@ class LogEngine {
         std::vector<LogEntry> logs;
     public:
         void loadFromFile(const std::string& path);
+        void clearLogs();
         void addEntry(const LogEntry & entry);
         std::vector<LogEntry> query(const QueryOptions& opts);
         [[nodiscard]] bool isInRange(std::chrono::system_clock::time_point timePoint, 
