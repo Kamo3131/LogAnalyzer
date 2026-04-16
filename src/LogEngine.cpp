@@ -26,6 +26,9 @@
         }
         file.close();
     }
+    void LogEngine::clearLogs() {
+        logs.clear();
+    }
     bool LogEngine::isInRange(std::chrono::system_clock::time_point timePoint, 
         std::optional<std::pair<std::chrono::system_clock::time_point, std::chrono::system_clock::time_point>> timeRange) const {
             if(timeRange->first <= timePoint && timeRange->second >= timePoint) {

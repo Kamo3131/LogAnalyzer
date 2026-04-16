@@ -12,15 +12,30 @@ int main() {
     LogEngine engine;
     engine.loadFromFile(getUniversalPath("logs.txt"));
     while(true) {
-        std::cout << "Write your query: ";
-        std::string query;
-        getline(std::cin, query);
-        QueryInterface interface;
-        QueryOptions opt = interface.parseQuery(query);
-        std::vector<LogEntry> entries = engine.query(opt);
-        for(const LogEntry& entry : entries) {
-            std::cout << entry << std::endl;
+        std::string command;
+        std::cout << "1) CHANGE - change file\n2) WRITE - write queries\nCommand: ";
+        getline(std::cin, command);
+        if("CHANGE" == command || "1" == command) {
+            engine.clearLogs();
+            std::cout << "Enter new path (or 'cancel'): ";
+            std::string path;
+            getline(std::cin, path);
+            if("cancel" == path) continue;
+            engine.loadFromFile(getUniversalPath(path));
+        } else if ("WRITE" == command || "2" == command) {
+            while(true) {
+                std::cout << "Write your query (or 'cancel'): ";
+                std::string query;
+                getline(std::cin, query);
+                if("cancel" == query) break;
+                QueryInterface interface;
+                QueryOptions opt = interface.parseQuery(query);
+                std::vector<LogEntry> entries = engine.query(opt);
+                for(const LogEntry& entry : entries) {
+                    std::cout << entry << std::endl;
+                }
+            }
         }
-    }
 
+    }
 }
