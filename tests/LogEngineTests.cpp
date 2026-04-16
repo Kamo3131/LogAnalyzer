@@ -29,7 +29,7 @@ TEST(QueryInterfaceTest, ShouldReturnNulloptWhenTimeRangeMissing) {
 
 TEST(QueryInterfaceTest, ShouldExtractFullTimeRange) {
     QueryInterface interface;
-    std::string query = "TIMESTAMP od \"2023-10-25T10:00:00\" do \"2023-10-25T10:10:00\"";
+    std::string query = "TIMESTAMP from \"2023-10-25T10:00:00\" to \"2023-10-25T10:10:00\"";
     
     auto opts = interface.parseQuery(query);
     
@@ -40,7 +40,7 @@ TEST(QueryInterfaceTest, ShouldExtractFullTimeRange) {
 
 TEST(QueryInterfaceTest, ShouldHandlePartialMessageSearch) {
     QueryInterface interface;
-    std::string query = "MESSAGE=\"Transaction rejected\"";
+    std::string query = "Message=\"Transaction rejected\"";
     
     auto opts = interface.parseQuery(query);
     
