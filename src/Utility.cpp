@@ -9,7 +9,11 @@ std::chrono::system_clock::time_point parseTimestamp(const std::string& tsStr) {
         return std::chrono::system_clock::time_point::min();
     }
     tm.tm_isdst = 0; 
-    time_t tt = _mkgmtime(&tm);
-    
+    time_t tt;
+    #ifdef _WIN32
+        tt = _mkgmtime(&tm);
+    #else
+        tt = timegm(&tm);
+    #endif
     return std::chrono::system_clock::from_time_t(tt);
 }

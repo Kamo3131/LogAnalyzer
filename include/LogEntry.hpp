@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 struct LogEntry {
     std::chrono::system_clock::time_point timestamp;
